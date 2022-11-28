@@ -29,7 +29,7 @@ List *listCreate()
 
 void listPush(List *list, unsigned int value)
 {
-	Element *element = (Element*) malloc(sizeof(Element));
+	Element *element = elementCreate();
 	element->value = value;
 	element->pSuccessor = list->head;
 	list->head = element;
@@ -38,13 +38,14 @@ void listPush(List *list, unsigned int value)
 
 Element *listPop(List *list)
 {
-	return list->head;
+	Element *element = list->head;
+	list->head = list->head->pSuccessor;
+	return element;
 }
 
-void listPrint(List *list)
+void listPrint(const List *list)
 {
-	//Element *element = list->head;
-	Element *element = listPop(list);
+	Element *element = list->head;
 
 	if (element == NULL)
 	{
@@ -54,9 +55,9 @@ void listPrint(List *list)
 	while(element != NULL)
 	{
 		printf(" %d ", element->value);
-		//printf("%x -> ", element);
+
 		element = element->pSuccessor;
-		//printf("%x \n", element);
+
 		if (element == NULL)
 		{
 			printf("\n");
@@ -83,7 +84,7 @@ void listFillRandom(List *list, int seed, int anzahlWerte, int min, int max)
 
 Element *listFindElement(List *list, unsigned int value)
 {
-	Element *element = listPop(list);
+	Element *element = list->head;
 
 	while(element != NULL)
 	{
@@ -100,14 +101,22 @@ Element *listFindElement(List *list, unsigned int value)
 
 int listGetIndexOfElement(List *list, unsigned value)
 {
-	Element *element = listPop(list);
+	Element *element = list->head;
 
 	int index = 0;
+
+	int foundIndex = 0;
+
+	if (element == NULL)
+	{
+		return -1;
+	}
 
 	while(element != NULL)
 	{
 		if (element->value == value)
 		{
+			foundIndex = 1;
 			break;
 		}
 
@@ -116,17 +125,19 @@ int listGetIndexOfElement(List *list, unsigned value)
 		index++;
 	}
 
-	if (element == NULL)
+	if (foundIndex == 1)
 	{
-		index = -1;
+		return index;
+	} else {
+		return -1;
 	}
 
-	return index;
+
 }
 
 Element *listGetElementAtIndex(List *list, unsigned int index)
 {
-	Element *element = listPop(list);
+	Element *element = list->head;
 
 	for (int i = 0; i < index; i++)
 	{
@@ -143,9 +154,10 @@ Element *listGetElementAtIndex(List *list, unsigned int index)
 
 boolean listSwapElements(List *list, unsigned int aIndex, unsigned int bIndex)
 {
-	Element *element = listPop(list);
 
-	Element *specificElement[2] = {listGetElementAtIndex(list, aIndex), listGetElementAtIndex(list, bIndex)};
+	Element *specificElement[2] = {listGetElementAtIndex(list, aIndex),
+								   listGetElementAtIndex(list, bIndex)};
+
 	Element *backupElement;
 
 	if (aIndex == bIndex)
@@ -221,12 +233,16 @@ void test_pushPrint(void)
 {
 	List *list = listCreate();
 
+	printf("Aufgabe 4a: \n");
+
 	listPrint(list);
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 1; i < 10; i++)
 	{
+		printf(" %d ", i);
 		listPush(list, i);
 	}
+	printf("\n");
 
 	listPrint(list);
 
@@ -237,23 +253,28 @@ void testListFindElement(void)
 {
 	List *list = listCreate();
 
+	printf("Aufgabe 4b: \n");
+
+	listPrint(list);
+
 	Element *element = listFindElement(list, 0);
 
-	if (element != NULL)
+
+	if (element == NULL)
 	{
 		printf("Korrekt \n");
 	} else {
 		printf("Falsch \n");
 	}
 
-	for (int i = 9; i >= 0; i--)
+	for (int i = 1; i < 10; i++)
 	{
 		listPush(list, i);
 	}
 
 	element = listFindElement(list, 5);
 
-	if (element->value == 5 || element != NULL)
+	if (element->value == 5)
 	{
 		printf("Korrekt \n");
 	} else {
@@ -269,12 +290,18 @@ void testListFindElement(void)
 		printf("Falsch \n");
 	}
 
+	listPrint(list);
+
 	printf("\n");
 }
 
 void testListGetIndexOfElement(void)
 {
 	List *list = listCreate();
+
+	printf("Aufgabe 5a: \n");
+
+	listPrint(list);
 
 	int index = listGetIndexOfElement(list, 0);
 
@@ -285,7 +312,7 @@ void testListGetIndexOfElement(void)
 		printf("Falsch \n");
 	}
 
-	for (int i = 10; i > 0; i--)
+	for (int i = 10 - 1; i > 0; i--)
 	{
 		listPush(list, i);
 	}
@@ -317,12 +344,18 @@ void testListGetIndexOfElement(void)
 		printf("Falsch \n");
 	}
 
+	listPrint(list);
+
 	printf("\n");
 }
 
 void testListGetElementAtIndex(void)
 {
 	List *list = listCreate();
+
+	printf("Aufgabe 5b: \n");
+
+	listPrint(list);
 
 	Element *element = listGetElementAtIndex(list, 5);
 
@@ -333,7 +366,7 @@ void testListGetElementAtIndex(void)
 		printf("Falsch \n");
 	}
 
-	for (int i = 10; i > 0; i--)
+	for (int i = 9; i > 0; i--)
 	{
 		listPush(list, i);
 	}
@@ -355,11 +388,15 @@ void testListGetElementAtIndex(void)
 	} else {
 		printf("Falsch \n");
 	}
+
+	listPrint(list);
+
+	printf("\n");
 }
 
 int main(void)
 {
-	printf("Abgabe3 \n");
+	printf("Abgabe3 \n \n");
 
 	/*
 	List *list = listCreate();
