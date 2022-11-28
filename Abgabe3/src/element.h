@@ -15,7 +15,5 @@ struct Element
 };
 typedef struct Element Element;
 
-Element *elementCreate();
-
 
 #endif /* ELEMENT_H_ */
