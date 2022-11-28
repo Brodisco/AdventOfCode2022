@@ -139,17 +139,30 @@ Element *listGetElementAtIndex(List *list, unsigned int index)
 {
 	Element *element = list->head;
 
+	int foundIndex = 1;
+
+	if (element == NULL)
+	{
+		return NULL;
+	}
+
 	for (int i = 0; i < index; i++)
 	{
 		if (element == NULL)
 		{
-			break;
+			foundIndex = 0;
 		} else {
 			element = element->pSuccessor;
 		}
 	}
 
-	return element;
+	if (foundIndex == 1)
+	{
+		return element;
+	} else {
+		return NULL;
+	}
+
 }
 
 

@@ -154,6 +154,7 @@ void testListGetElementAtIndex(void)
 
 	element = listGetElementAtIndex(list, 5);
 
+
 	if (element->value == 6)
 	{
 		printf("Korrekt \n");
@@ -162,6 +163,7 @@ void testListGetElementAtIndex(void)
 	}
 
 	element = listGetElementAtIndex(list, 15);
+	printf("Index: %x \n", element);
 
 	if (element == NULL)
 	{
