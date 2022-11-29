@@ -99,70 +99,45 @@ Element *listFindElement(List *list, unsigned int value)
 	return element;
 }
 
+
 int listGetIndexOfElement(List *list, unsigned value)
 {
 	Element *element = list->head;
 
 	int index = 0;
 
-	int foundIndex = 0;
-
-	if (element == NULL)
-	{
-		return -1;
-	}
+	int ret = -1;
 
 	while(element != NULL)
 	{
 		if (element->value == value)
 		{
-			foundIndex = 1;
+			ret = index;
 			break;
 		}
 
 		element = element->pSuccessor;
 
 		index++;
+
 	}
 
-	if (foundIndex == 1)
-	{
-		return index;
-	} else {
-		return -1;
-	}
-
-
+	return ret;
 }
+
 
 Element *listGetElementAtIndex(List *list, unsigned int index)
 {
 	Element *element = list->head;
 
-	int foundIndex = 1;
-
-	if (element == NULL)
+	while(index > 0 && element != NULL)
 	{
-		return NULL;
+		element = element->pSuccessor;
+
+		index--;
 	}
 
-	for (int i = 0; i < index; i++)
-	{
-		if (element == NULL)
-		{
-			foundIndex = 0;
-		} else {
-			element = element->pSuccessor;
-		}
-	}
-
-	if (foundIndex == 1)
-	{
-		return element;
-	} else {
-		return NULL;
-	}
+	return element;
 
 }
-
 
