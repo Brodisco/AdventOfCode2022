@@ -13,4 +13,7 @@ void testListFindElement(void);
 void testListGetIndexOfElement(void);
 void testListGetElementAtIndex(void);
 
+void deleteElementTest(void);
+void swapElementTest(void);
+
 #endif /* TEST_H_ */

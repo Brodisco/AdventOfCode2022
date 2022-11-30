@@ -58,27 +58,18 @@ boolean listDeleteElement(List *list, unsigned int value)
 {
 	Element *specificElement = listFindElement(list, value);
 	Element *prevElement = NULL;
-	int index = 0;
+	int index = listGetIndexOfElement(list, value);
 
-	if (specificElement == NULL)
+	if (specificElement == NULL || index == -1)
 	{
 		return FALSE;
 	}
 
-	index = listGetIndexOfElement(list, value);
 	prevElement = listGetElementAtIndex(list, index - 1);
 
 	if (index == 0)
 	{
-		list->head = specificElement->pSuccessor;
-		free(specificElement);
-		return TRUE;
-	}
-
-	if (specificElement->pSuccessor == NULL)
-	{
-		prevElement->pSuccessor = NULL;
-		free(specificElement);
+		free(listPop(list));
 		return TRUE;
 	}
 

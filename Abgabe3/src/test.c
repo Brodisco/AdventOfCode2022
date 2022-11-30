@@ -163,7 +163,6 @@ void testListGetElementAtIndex(void)
 	}
 
 	element = listGetElementAtIndex(list, 15);
-	printf("Index: %x \n", element);
 
 	if (element == NULL)
 	{
@@ -175,5 +174,59 @@ void testListGetElementAtIndex(void)
 	listPrint(list);
 
 	printf("\n");
+}
+
+void deleteElementTest(void)
+{
+	List *list = listCreate();
+
+		for (int i = 1; i < 10; i++)
+		{
+			listPush(list, i);
+		}
+
+		listPrint(list);
+
+		for (int i = 0; i < 10; i++)
+		{
+			printf("Index(%d): %p \n",i,  listGetElementAtIndex(list, i));
+		}
+
+		listSwapElements(list, 3, 4);
+
+		for (int i = 0; i < 10; i++)
+		{
+			listDeleteElement(list, i);
+			listPrint(list);
+		}
+}
+
+void swapElementTest(void)
+{
+	printf("\n \n");
+
+	List *list = listCreate();
+
+	for (int i = 1; i < 10; i++)
+	{
+		listPush(list, i);
+	}
+
+	listSwapElements(list, 2, 5);
+
+	listPrint(list);
+
+	unsigned int i = 0, k = 8;
+	char check = 1;
+
+	do
+	{
+
+		check = listSwapElements(list, i, k);
+		printf("%d %d -> %d\n", i, k, check);
+		listPrint(list);
+		printf("\n");
+	}while(++i < 8 && --k >= 0 && check == 1);
+
 }
 
