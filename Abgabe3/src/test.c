@@ -18,7 +18,7 @@ void test_pushPrint(void)
 
 	listPrint(list);
 
-	for (int i = 1; i < 10; i++)
+	for (int i = 1; i <= 10; i++)
 	{
 		printf(" %d ", i);
 		listPush(list, i);
@@ -40,7 +40,6 @@ void testListFindElement(void)
 
 	Element *element = listFindElement(list, 0);
 
-
 	if (element == NULL)
 	{
 		printf("Korrekt \n");
@@ -48,7 +47,7 @@ void testListFindElement(void)
 		printf("Falsch \n");
 	}
 
-	for (int i = 1; i < 10; i++)
+	for (int i = 10; i > 0; i--)
 	{
 		listPush(list, i);
 	}
@@ -93,7 +92,7 @@ void testListGetIndexOfElement(void)
 		printf("Falsch \n");
 	}
 
-	for (int i = 10 - 1; i > 0; i--)
+	for (int i = 10; i > 0; i--)
 	{
 		listPush(list, i);
 	}
@@ -147,7 +146,7 @@ void testListGetElementAtIndex(void)
 		printf("Falsch \n");
 	}
 
-	for (int i = 9; i > 0; i--)
+	for (int i = 10; i > 0; i--)
 	{
 		listPush(list, i);
 	}
@@ -178,6 +177,8 @@ void testListGetElementAtIndex(void)
 
 void deleteElementTest(void)
 {
+	printf("Delete Element: \n");
+
 	List *list = listCreate();
 
 		for (int i = 1; i < 10; i++)
@@ -203,7 +204,7 @@ void deleteElementTest(void)
 
 void swapElementTest(void)
 {
-	printf("\n \n");
+	printf("Swap Element: \n");
 
 	List *list = listCreate();
 
@@ -231,6 +232,8 @@ void swapElementTest(void)
 		listPrint(list);
 
 	}while(++i < 8 && --k >= 0 && check == 1);
+
+	printf("\n");
 
 }
 
