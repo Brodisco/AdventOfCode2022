@@ -14,6 +14,13 @@
 boolean listSwapElements(List *list, unsigned int aIndex, unsigned int bIndex)
 {
 
+	if (aIndex > bIndex)
+	{
+		int backIndex = aIndex;
+		aIndex = bIndex;
+		bIndex = backIndex;
+	}
+
 	Element *specificElement[2] = {listGetElementAtIndex(list, aIndex),
 								   listGetElementAtIndex(list, bIndex)};
 

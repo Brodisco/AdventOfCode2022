@@ -23,12 +23,12 @@ int main(void)
 	deleteElementTest();
 	swapElementTest();
 
-
+/*
 	test_pushPrint();
 	testListFindElement();
 	testListGetIndexOfElement();
 	testListGetElementAtIndex();
-
+*/
 	int wait;
 	scanf("%d", &wait);
 	return EXIT_SUCCESS;

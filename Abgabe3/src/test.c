@@ -212,7 +212,11 @@ void swapElementTest(void)
 		listPush(list, i);
 	}
 
-	listSwapElements(list, 2, 5);
+	listSwapElements(list, 3, 2);
+
+	listPrint(list);
+
+	listSwapElements(list, 2, 3);
 
 	listPrint(list);
 
@@ -223,9 +227,9 @@ void swapElementTest(void)
 	{
 
 		check = listSwapElements(list, i, k);
-		printf("%d %d -> %d\n", i, k, check);
+		printf("%d <-> %d = (%d)", i, k, check);
 		listPrint(list);
-		printf("\n");
+
 	}while(++i < 8 && --k >= 0 && check == 1);
 
 }
