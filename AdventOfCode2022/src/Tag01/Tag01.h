@@ -8,6 +8,9 @@
 #ifndef TAG01_H_
 #define TAG01_H_
 
+void doDay01TaskA(void);
+void doDay01TaskA(void);
+
 
 
 #endif /* TAG01_H_ */
