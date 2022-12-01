@@ -23,23 +23,20 @@ boolean listSwapElements(List *list, unsigned int aIndex, unsigned int bIndex)
 
 	Element *specificElement[2] = {listGetElementAtIndex(list, aIndex),
 								   listGetElementAtIndex(list, bIndex)};
-
 	Element *backupElement;
 
-	if (aIndex == bIndex)
+
+	if (specificElement[0] == NULL || specificElement[1] == NULL || aIndex == bIndex)
 	{
 		return FALSE;
 	}
 
-	if (specificElement[0] == NULL || specificElement[1] == NULL)
-	{
-		return FALSE;
-	}
-
+	//Tausche die Verlinkung zu den Elementen die nach den zu tauschende Elementen liegen
 	backupElement = specificElement[0]->pSuccessor;
 	specificElement[0]->pSuccessor = specificElement[1]->pSuccessor;
 	specificElement[1]->pSuccessor = backupElement;
 
+	//Wenn der erste Index das erste Element der Liste ist, muss der Kopf der Liste neu gesetzt werden
 	if(aIndex == 0)
 	{
 		list->head = specificElement[1];

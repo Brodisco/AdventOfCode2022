@@ -212,11 +212,11 @@ void swapElementTest(void)
 		listPush(list, i);
 	}
 
-	listSwapElements(list, 3, 2);
+	listSwapElements(list, 7, 8);
 
 	listPrint(list);
 
-	listSwapElements(list, 2, 3);
+	listSwapElements(list, 7, 8);
 
 	listPrint(list);
 
