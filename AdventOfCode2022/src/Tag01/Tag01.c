@@ -12,9 +12,12 @@ void doDay01TaskA() {
 
 	printf("Day 01");
 
-	FILE* pInput = fopen("./inputA.txt","r");
+	//FILE* pInput = fopen("/rzhome/mwegmann/git/AdventOfCode2022/AdventOfCode2022/src/Tag01//inputA.txt","r");
+	FILE* pInput = fopen("../src/Tag01//inputA.txt","r");
 	int num;
 	printf("%p", pInput);
+
+	printf("%s", chdir());
 /*
 	fscanf(pInput,"%d", &num);
 
